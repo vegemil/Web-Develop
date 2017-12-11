@@ -9,7 +9,7 @@ public class SQLConnectionTest {
 	private static final String DRIVER = "org.mariadb.jdbc.Driver";
     private static final String URL = "jdbc:mariadb://127.0.0.1:3306/first";
     private static final String USER = "euna";
-    private static final String PW = "1234";
+    private static final String PW = "dmsdk2";
     
     @Test
     public void testConnection() throws Exception {

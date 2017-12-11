@@ -7,12 +7,13 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/api/*")
-public class ConfitApiController {
+public class ConfigApiController {
 
 	@Inject
 	ConfigApiService apiService;
@@ -24,4 +25,15 @@ public class ConfitApiController {
         return "list";
         
     }
+	
+	@RequestMapping("save")
+	public String save(@ModelAttribute ConfigApi api) {
+		apiService.create(api);
+		return "redirect:/api/list";
+	}
+	
+	@RequestMapping("form")
+	public String form() {
+		return "form";
+	}
 }
