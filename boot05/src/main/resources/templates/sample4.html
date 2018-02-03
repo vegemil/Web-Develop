@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thymeleaf3</title>
+<meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8" />
+</head>
+<body>
+	<table border="1" th:with="target='u0001'">
+		<tr>
+			<td>INDEX</td>
+			<td>MNAME</td>
+			<td>REGDATE</td>
+		</tr>
+
+		<tr th:each="member : ${list}">
+			<td th:text="${member.mid == target ?'SECREAT' : member.mid}" />
+			<td th:text="${member.mname}" />
+			<td th:text="${#dates.format(member.regdate, 'yyyy-MM-dd')}" />
+		</tr>
+	</table>
+</body>
+</html>
