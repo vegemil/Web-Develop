@@ -49,4 +49,16 @@ public class SampleController {
 		
 		model.addAttribute("list", list);
 	}
+
+	@GetMapping("/sample8")
+	public void sample8(Model model)
+	{
+		
+	}
+	
+	@GetMapping("/sample/hello")
+	public void hello(Model model)
+	{
+		
+	}
 }
