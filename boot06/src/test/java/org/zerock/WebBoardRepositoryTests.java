@@ -19,6 +19,8 @@ import org.zerock.persistence.WebBoardRepository;
 
 import lombok.extern.java.Log;
 
+
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Log
@@ -40,15 +42,27 @@ public class WebBoardRepositoryTests {
 //		});
 //	}
 	
+//	 @Test
+//	 public void testList1() {
+//	 	Pageable pageable = PageRequest.of(0, 20, Direction.DESC, "bno");
+//		
+//	 	Page<WebBoard> result = repo.findAll(repo.makePredicate(null, null), pageable);
+//		
+//	 	log.info("PAGE " + result.getPageable());
+//		
+//	 	log.info("---------------------------");
+//	 	result.getContent().forEach(board -> log.info("" + board));
+//	 }
+
 	@Test
-	public void testList1() {
+	public void testList2(){
 		Pageable pageable = PageRequest.of(0, 20, Direction.DESC, "bno");
-		
-		Page<WebBoard> result = repo.findAll(repo.makePredicate(null, null), pageable);
-		
-		log.info("PAGE " + result.getPageable());
-		
+
+		Page<WebBoard> result = repo.findAll(repo.makePredicate("t", "10"), pageable);
+
+		log.info("PAGE: " + result.getPageable());
+
 		log.info("---------------------------");
-		result.getContent().forEach(board -> log.info("" + board));
+		result.getContent().forEach(board -> log.info("" + board.toString()));
 	}
 }
