@@ -9,11 +9,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zerock.domain.WebBoard;
 import org.zerock.persistence.WebBoardRepository;
 import org.zerock.vo.PageMaker;
 import org.zerock.vo.PageVO;
+
 
 @Controller
 @RequestMapping("/boards/")
@@ -24,12 +26,12 @@ public class WebBoardController{
 	private WebBoardRepository repo;
 
 	@GetMapping("/list")
-	public void list(PageVO vo, Model model) {
+	public void list(@ModelAttribute("pageVO") PageVO vo, Model model) {
 		Pageable page = vo.makePageable(0, "bno");
-		Page<WebBoard> result = repo.findAll(repo.makePredicate(null, null), page);
+		Page<WebBoard> result = repo.findAll(repo.makePredicate(vo.getType(), vo.getKeyword()), page);
 		
-		log.info("" + page);
-		log.info("" + result);
+//		log.info("" + page);
+//		log.info("" + result);
 		
 		log.info("TOTAL PAGE NUMBER : " + result.getTotalPages());
 		
