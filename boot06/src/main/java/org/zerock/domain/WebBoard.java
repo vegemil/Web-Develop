@@ -1,12 +1,17 @@
 package org.zerock.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -21,7 +26,7 @@ import lombok.ToString;
 @Entity
 @Table(name="tbl_webboards")
 @EqualsAndHashCode(of="bno")
-@ToString
+@ToString(exclude="replies")
 public class WebBoard {
 	
 	@Id
@@ -38,4 +43,7 @@ public class WebBoard {
 	
 	@UpdateTimestamp
 	private Timestamp updatedate;
+
+	@OneToMany(mappedBy="board", fetch=FetchType.LAZY)
+	private List<WebReply> replies;
 }
